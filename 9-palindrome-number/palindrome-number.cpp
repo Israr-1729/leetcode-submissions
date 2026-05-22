@@ -4,9 +4,7 @@ public:
 
         if(x<0)
         return false;
-
-        long long absx = (long long)x;
-        absx = absx<0 ? -absx : absx;
+        int absx = x;
         long long rev = 0;
         while(absx>0)
         {
@@ -14,11 +12,6 @@ public:
             absx/=10;
         }
         return rev==x;
-
-        
-
-
-
         
     }
 };
