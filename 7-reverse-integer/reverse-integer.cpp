@@ -13,12 +13,12 @@ public:
             absx/=10;
         }
 
+        if(x<0)
+        rev = -rev;
+
         if(rev>INT_MAX || rev<INT_MIN)
         rev = 0;
-
-        if(x<0)
-        return -1*rev;
-        else
+        
         return rev;
         
     }
