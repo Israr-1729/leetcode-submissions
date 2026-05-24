@@ -11,14 +11,12 @@
 class Solution {
 public:
     ListNode* mergeNodes(ListNode* head) {
-        ListNode* firstZero = head;
         ListNode* secondZero = head;
         ListNode* result = new ListNode(0);
         ListNode* dummyHead = result;
         while(true)
         {
             int sum = 0;
-            firstZero = secondZero;
             if(secondZero->next == nullptr)
             break;
             secondZero = secondZero->next;
