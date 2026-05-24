@@ -6,9 +6,10 @@ public:
         int copy = i;
         while(i>0)
         {
-            if(i%10 == 0)
+            int digit = i%10;
+            if(digit == 0)
             return false;
-            if((copy)%(i%10)!=0)
+            if((copy)%(digit)!=0)
             return false;
             i/=10;
         }
