@@ -1,44 +1,97 @@
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode() : val(0), next(nullptr) {}
+ *     ListNode(int x) : val(x), next(nullptr) {}
+ *     ListNode(int x, ListNode *next) : val(x), next(next) {}
+ * };
+ */
 class Solution {
 public:
     ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {
 
-        vector<int> num1, num2;
+        ListNode* temp1 = l1;
+        ListNode* temp2 = l2;
+        int size1 = 0; int size2 = 0;
 
-        while(l1) {
-            num1.push_back(l1->val);
-            l1 = l1->next;
+        while(temp1)
+        {
+            size1++;
+            temp1 = temp1->next;
+        }
+        while(temp2)
+        {
+            size2++;
+            temp2 = temp2->next;
         }
 
-        while(l2) {
-            num2.push_back(l2->val);
-            l2 = l2->next;
+        vector<int> num1(size1);
+        vector<int> num2(size2);
+        temp1 = l1;
+        temp2 = l2;
+
+        for(int i = 0; i<size1; i++)
+        {
+            num1[i] = temp1->val;
+            temp1 = temp1->next;
         }
 
-        int i = num1.size() - 1;
-        int j = num2.size() - 1;
-        int carry = 0;
+        for(int j = 0; j<size2; j++)
+        {
+            num2[j] = temp2->val;
+            temp2 = temp2->next;
+        }
 
         vector<int> sum;
+        int i = size1-1;
+        int j = size2-1;
+        int carry = 0;
+        while(i>=0 && j>=0)
+        {
+            int sumDigit = carry;
+            sumDigit+=num1[i];
+            sumDigit+=num2[j];
+            carry = sumDigit/10;
+            sum.push_back(sumDigit%10);
 
-        while(i >= 0 || j >= 0 || carry) {
-
-            int total = carry;
-
-            if(i >= 0) total += num1[i--];
-            if(j >= 0) total += num2[j--];
-
-            carry = total / 10;
-            sum.push_back(total % 10);
+            i--;
+            j--;
         }
 
-        ListNode* dummy = new ListNode(0);
-        ListNode* curr = dummy;
+        while(i>=0)
+        {
+            int sumDigit = carry;
+            sumDigit+=num1[i];
+            carry = sumDigit/10;
+            sum.push_back(sumDigit%10);
+            i--;
 
-        for(int k = sum.size() - 1; k >= 0; k--) {
-            curr->next = new ListNode(sum[k]);
-            curr = curr->next;
         }
 
+        while(j>=0)
+        {
+            int sumDigit = carry;
+            sumDigit+=num2[j];
+            carry = sumDigit/10;
+            sum.push_back(sumDigit%10);
+            j--;
+        }
+
+        if(carry != 0)
+        sum.push_back(carry);
+
+        int finalSize = sum.size();
+        ListNode* result = new ListNode(0);
+        ListNode* dummy = result;
+
+        for(int k = finalSize-1; k>=0; k--)
+        {
+            ListNode* newNode = new ListNode(sum[k]);
+            result->next = newNode;
+            result = result->next;
+        }
         return dummy->next;
     }
 };
