@@ -1,6 +1,8 @@
 class Solution {
 public:
 
+//Basic Idea is that if a smaller valued character is before a larger valued character, we subtract. Else, we add.
+
 int value(char c) {
         if (c == 'I') return 1;
         if (c == 'V') return 5;
