@@ -22,14 +22,14 @@ public:
         }
 
         if(head==nullptr)
-        return {0};
+        return {};
         vector<int> result(size);
         temp = head; int i = 0;
         while(temp)
         {
             if(temp->next == nullptr)
             {
-                result[size-1]==0;
+                result[size-1]=0;
                 break;
             }
             int resultIDX = 0;
