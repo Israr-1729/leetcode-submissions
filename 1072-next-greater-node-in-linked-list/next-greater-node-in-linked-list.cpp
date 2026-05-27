@@ -11,16 +11,25 @@
 class Solution {
 public:
     vector<int> nextLargerNodes(ListNode* head) {
+        ListNode* temp = head;
+
+        int size = 0;
+
+        while(temp)
+        {
+            size++;
+            temp = temp->next;
+        }
 
         if(head==nullptr)
         return {0};
-        vector<int> result;
-        ListNode* temp = head;
+        vector<int> result(size);
+        temp = head; int i = 0;
         while(temp)
         {
             if(temp->next == nullptr)
             {
-                result.push_back(0);
+                result[size-1]==0;
                 break;
             }
             int resultIDX = 0;
@@ -34,8 +43,9 @@ public:
                 }
                 traverse = traverse->next;
             }
-            result.push_back(resultIDX);
+            result[i] = resultIDX;
             temp = temp->next;
+            i++;
         }
         return result;
     }
