@@ -22,13 +22,8 @@ public:
         set<int> isSeen;
         for(int i = 0; i<size*2; i++)
         {
-            int num = numsAndReversed[i]; 
-            if(isSeen.find(num) == isSeen.end())
-            {
-                count++;
-                isSeen.insert(num);
-            }
+            isSeen.insert(numsAndReversed[i]);
         }
-        return count;
+        return isSeen.size();
     }
 };
