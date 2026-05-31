@@ -1,39 +1,32 @@
 class MinStack {
-public:
+private:
+    stack<int> st;
+    stack<int> minSt;
 
-    vector<int> v;
+public:
     MinStack() {
     }
     
     void push(int val) {
-        v.push_back(val);
+        st.push(val);
+
+        if (minSt.empty() || val <= minSt.top()) {
+            minSt.push(val);
+        }
     }
     
     void pop() {
-        v.pop_back();
+        if (st.top() == minSt.top()) {
+            minSt.pop();
+        }
+        st.pop();
     }
     
     int top() {
-        return v[v.size()-1];
+        return st.top();
     }
     
     int getMin() {
-        int lowest = v[0];
-        int size = v.size();
-        for(int i = 0; i<size; i++)
-        {
-            if(lowest>v[i])
-            lowest = v[i];
-        }
-        return lowest;
+        return minSt.top();
     }
 };
-
-/**
- * Your MinStack object will be instantiated and called as such:
- * MinStack* obj = new MinStack();
- * obj->push(val);
- * obj->pop();
- * int param_3 = obj->top();
- * int param_4 = obj->getMin();
- */
