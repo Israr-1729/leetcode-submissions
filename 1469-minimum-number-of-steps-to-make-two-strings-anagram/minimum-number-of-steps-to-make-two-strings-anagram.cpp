@@ -1,23 +1,21 @@
 class Solution {
 public:
     int minSteps(string s, string t) {
-        vector<int> mapS(26);
-        vector<int> mapT(26);
-        int size = s.size();
-        for(int i = 0; i<size; i++)
-        {
-            mapS[s[i]-'a']++;
-            mapT[t[i]-'a']++;
+        vector<int> freq(26, 0);
+
+        for (char c : s)
+            freq[c - 'a']++;
+
+        for (char c : t)
+            freq[c - 'a']--;
+
+        int steps = 0;
+
+        for (int x : freq) {
+            if (x > 0)
+                steps += x;
         }
 
-        // {1, 2}
-        // {2, 1}
-        int counter = 0;
-        for(int i = 0; i<26; i++)
-        {
-            if(mapT[i]<mapS[i])
-            counter+= mapS[i]-mapT[i];
-        }
-        return (counter);
+        return steps;
     }
 };
