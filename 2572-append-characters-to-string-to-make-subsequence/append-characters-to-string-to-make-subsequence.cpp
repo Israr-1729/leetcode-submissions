@@ -11,11 +11,6 @@ public:
                 idx++;
             }
         }
-        string ans = "";
-        for(int i = idx; i<tSize; i++)
-        {
-            ans += t[idx];
-        }
-        return ans.size();
+        return tSize - idx;
     }
 };
