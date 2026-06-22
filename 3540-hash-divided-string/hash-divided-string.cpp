@@ -12,14 +12,14 @@ public:
         return ('a' + sum%26);
     }
     string stringHash(string s, int k) {
-        string result = "";
-        int idx = 0;
         int size = s.size();
+        int idx = 0;
+        string result = "";
         while(idx<size)
         {
             result += hashedChar(s.substr(idx, k));
             idx += k;
         }
-    return result;
+        return result;
     }
 };
