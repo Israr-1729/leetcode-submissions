@@ -3,18 +3,21 @@ public:
     int firstUniqueFreq(vector<int>& nums) {
         unordered_map<int, int> freq;
         for(int a : nums)
-        freq[a]++;
+        {
+            freq[a]++;
+        }
+
         unordered_map<int, int> freqfreq;
-        for(auto &p : freq)
+        for(auto &a : freq)
         {
-            freqfreq[p.second]++;
+            freqfreq[a.second]++;
         }
-        int size = nums.size();
-        for(int i = 0; i<size; i++)
+        
+        for(int a : nums)
         {
-            if(freqfreq[freq[nums[i]]]==1)
-            return nums[i];
+            if(freqfreq[freq[a]]==1)
+            return a;
         }
-    return -1;
+        return -1;
     }
 };
