@@ -1,21 +1,23 @@
 class Solution {
 public:
     vector<int> smallerNumbersThanCurrent(vector<int>& nums) {
-        multiset<int> copy;
+        unordered_map<int, int> mp;
         for(int a : nums)
-        copy.insert(a);
+        {
+            mp[a]++;
+        }
 
         int size = nums.size();
         vector<int> result(size);
 
         for(int i = 0; i<size; i++)
         {
-            int num = nums[i];
             int thisResult = 0;
-            for(auto &a : copy)
+            int num = nums[i];
+            for(auto &a : mp)
             {
-                if(a<num)
-                thisResult++;
+                if(a.first<num)
+                thisResult+=a.second;
             }
             result[i] = thisResult;
         }
