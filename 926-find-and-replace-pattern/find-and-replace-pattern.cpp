@@ -1,40 +1,35 @@
 class Solution {
 public:
 
-
-    string thisPattern(string thisString)
+    string thisPattern(string s)
     {
-        unordered_map<char, int> patternMap;
-        int size = thisString.size();
-        int idx = 0;
-        string thisPattern = "";
+        int idx = 'a';
+        unordered_map<char, int> mp;
+        int size = s.size();
+        string pattern = "";
 
         for(int i = 0; i<size; i++)
         {
-            if(patternMap.find(thisString[i])!=patternMap.end())
+            if(mp.find(s[i])==mp.end())
             {
-                thisPattern.push_back(patternMap[thisString[i]]+'a');
+                mp[s[i]] = idx++;
+                pattern.push_back(idx);
             }
+
             else
-            {
-                patternMap[thisString[i]] = idx++;
-                thisPattern.push_back(patternMap[thisString[i]]+'a');
-            }
+            pattern.push_back(mp[s[i]]);
         }
-        return thisPattern;
-    }
+        return pattern;
+    } 
     vector<string> findAndReplacePattern(vector<string>& words, string pattern) {
-    
-        string patternCode = thisPattern(pattern);
-        int wordsSize = words.size();
-        int patternSize = pattern.size();
+        string simplePattern = thisPattern(pattern);
         vector<string> result;
-        for(int i = 0; i<wordsSize; i++)
+        for(string s : words)
         {
-            if(words[i].size() != patternSize)
+            if(s.size()!=pattern.size())
             continue;
-            if(thisPattern(words[i])==patternCode)
-            result.push_back(words[i]);
+            if(thisPattern(s)==simplePattern)
+            result.push_back(s);
         }
         return result;
     }
