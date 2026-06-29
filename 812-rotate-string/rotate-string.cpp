@@ -1,27 +1,21 @@
 class Solution {
 public:
-
-    void rotateOnce(string &s)
-    {
-        int size = s.size();
-        char begin = s[0];
-        for(int i = 0; i < size - 1; i++)
-        {
-            s[i] = s[i + 1];
-        }
-
-        s[size-1] = begin;
-    }
     bool rotateString(string s, string goal) {
-        if(s==goal)
-        return true;
-        int size = s.size();
-        for(int i = 0; i<size; i++)
-        {
-            rotateOnce(s);
-            if(s==goal)
-            return true;
-        }
+        char goalFirst = goal[0];
+        if(s.size() != goal.size())
         return false;
+        int size = s.size();
+        int i = 0;
+        while(i<size)
+        {
+            if(s[i]==goalFirst)
+            {
+                string thisString = s.substr(i, size-i) + s.substr(0, i);
+                if(thisString == goal)
+                return true;
+            }
+            i++;
+        }
+    return false;
     }
 };
