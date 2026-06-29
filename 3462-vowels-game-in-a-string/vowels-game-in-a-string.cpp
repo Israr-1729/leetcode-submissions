@@ -1,13 +1,16 @@
 class Solution {
 public:
     bool doesAliceWin(string s) {
-        int numOfVowels = 0;
+        bool contains = false;
         for(char c : s)
         {
             if(c=='a' || c=='e' || c=='i' || c=='o' || c=='u')
-            numOfVowels++;
+            {
+                contains = true;
+                break;
+            }
         }
-        if(numOfVowels>0)
+        if(contains)
         return true;
         return false;
     }
