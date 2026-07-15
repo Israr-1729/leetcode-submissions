@@ -1,25 +1,26 @@
 class Solution {
 public:
     set<int> isSeen;
-
     bool isHappy(int n) {
 
         if(n==1)
         return true;
-        isSeen.insert(n);
-        int copy = n;
-        int next = 0;
-        while(copy!=0)
-        {
-            next += (copy%10)*(copy%10);
-            copy/=10;
-        }
-        if(isSeen.find(next)!=isSeen.end())
+
+        if(isSeen.contains(n))
         return false;
-        else
+
+        isSeen.insert(n);
+
+        int summ = 0;
+
+        while(n>0)
         {
-        isSeen.insert(next);
+            int digit = n%10;
+            summ += digit*digit;
+
+            n/=10;
         }
-        return isHappy(next);
+        
+        return isHappy(summ);
     }
 };
