@@ -1,16 +1,5 @@
 class Solution {
 public:
-
-    int gcd(int a, int b) {
-    while (b != 0) {
-        int temp = b;
-        b = a % b;
-        a = temp;
-    }
-    return a;
-}
-
-
     vector<int> evenSize(const vector<int> &prefixGCD)
     {
         int size = prefixGCD.size();
