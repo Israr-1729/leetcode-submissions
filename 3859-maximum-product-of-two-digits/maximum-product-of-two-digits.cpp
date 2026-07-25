@@ -1,10 +1,28 @@
 class Solution {
 public:
     int maxProduct(int n) {
-        string num = to_string(n);
-        sort(num.begin(), num.end());
-        int size = num.size();
-        return (num[size-1]-'0')*(num[size-2]-'0');
-        
+        vector<int> digits(10, 0);
+        while(n)
+        {
+            digits[n%10]++;
+            n/=10;
+        }
+
+        int product = 1; int count = 0;
+        for(int i = 9; i>=0; i--)
+        {
+            while(digits[i]!=0)
+            {
+                product*=i;
+                count++;
+                digits[i]--;
+
+                if(count==2)
+                break;
+            }
+            if(count == 2)
+            break;
+        }
+        return product;
     }
 };
