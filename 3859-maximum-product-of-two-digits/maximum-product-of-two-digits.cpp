@@ -1,28 +1,27 @@
 class Solution {
 public:
     int maxProduct(int n) {
-        vector<int> digits(10, 0);
+
+        int largest = 0;
+        int secondLargest = 0;
         while(n)
-        {
-            digits[n%10]++;
+        {  
+            int digit = n%10;
+
+            if(digit>=largest)
+            {
+                secondLargest = largest;
+                largest = digit;
+            }
+
+            else if(digit >= secondLargest)
+            {
+                secondLargest = digit;
+            }
+
             n/=10;
         }
-
-        int product = 1; int count = 0;
-        for(int i = 9; i>=0; i--)
-        {
-            while(digits[i]!=0)
-            {
-                product*=i;
-                count++;
-                digits[i]--;
-
-                if(count==2)
-                break;
-            }
-            if(count == 2)
-            break;
-        }
-        return product;
+        
+        return largest * secondLargest;
     }
 };
