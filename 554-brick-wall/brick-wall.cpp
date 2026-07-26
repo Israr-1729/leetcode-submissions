@@ -4,25 +4,19 @@ public:
         unordered_map<long long, int> mp;
         for(auto &v : wall)
         {
+            int size = v.size();
             long long runningSum = 0;
-            for(int a : v)
+            for(int i = 0; i<size-1; i++)
             {
-                runningSum += a;
+                runningSum += v[i];
                 mp[runningSum]++;
             }
-        }
-
-        long long width = 0;
-        for(int a : wall[0])
-        {
-            width += a;
         }
 
         int highestFrequency = 0;
         for(auto &a : mp)
         {
-            if(a.first == width)
-            continue;
+
 
             highestFrequency = :: max(highestFrequency, a.second);
         }
