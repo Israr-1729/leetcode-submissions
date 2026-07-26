@@ -1,24 +1,21 @@
 class Solution {
 public:
-    unordered_map<int, Employee*> mp;
-
-    int dfs(int id)
-    {
-        Employee* emp = mp[id];
-
-        int importance = emp->importance;
-
-        for(int sub : emp->subordinates)
-            importance += dfs(sub);
-
-        return importance;
-    }
-
-    int getImportance(vector<Employee*> employees, int id)
-    {
-        for(Employee* emp : employees)
-            mp[emp->id] = emp;
-
-        return dfs(id);
+    int getImportance(vector<Employee*> employees, int id) {
+        int i = 0;
+        int size = employees.size();
+        for (i = 0; i < size; i++) {
+            if (employees[i]->id == id)
+                break;
+        }
+        if (employees[i]->subordinates.size() == 0)
+            return employees[i]->importance;
+        else {
+            int importance = employees[i]->importance;
+            vector<int> subor = employees[i]->subordinates;
+            for (int a : subor) {
+                importance += getImportance(employees, a);
+            }
+            return importance;
+        }
     }
 };
