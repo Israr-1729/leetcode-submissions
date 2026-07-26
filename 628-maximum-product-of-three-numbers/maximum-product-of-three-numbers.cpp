@@ -1,47 +1,31 @@
 class Solution {
 public:
     int maximumProduct(vector<int>& nums) {
-        vector<int> large(3, INT_MIN);
-        vector<int> small(2, INT_MAX);
+        int max1 = INT_MIN, max2 = INT_MIN, max3 = INT_MIN;
+        int min1 = INT_MAX, min2 = INT_MAX;
 
-        //small[0] = smallest. small[1] = 2nd smallest
-        for(int a : nums)
-        {
-            if(a<=small[0])
-            {
-                small[1] = small[0];
-                small[0] = a;
+        for (int x : nums) {
+            // Smallest two
+            if (x <= min1) {
+                min2 = min1;
+                min1 = x;
+            } else if (x < min2) {
+                min2 = x;
             }
 
-            else if(a<small[1])
-            {
-                small[1] = a;
+            // Largest three
+            if (x >= max1) {
+                max3 = max2;
+                max2 = max1;
+                max1 = x;
+            } else if (x >= max2) {
+                max3 = max2;
+                max2 = x;
+            } else if (x > max3) {
+                max3 = x;
             }
         }
 
-        //large[0] = largest. large[1] = 2nd largest. large[2] = 3rd largest.
-
-        for(int a : nums)
-        {
-            if(a>=large[0])
-            {
-                large[2] = large[1];
-                large[1] = large[0];
-                large[0] = a;
-            }
-
-            else if(a>=large[1])
-            {
-                large[2] = large[1];
-                large[1] = a;
-            }
-
-            else if(a>large[2])
-            {
-                large[2] = a;
-            }
-
-        }
-        return max(large[0]*large[1]*large[2], small[0]*small[1]*large[0]);
+        return max(max1 * max2 * max3, min1 * min2 * max1);
     }
 };
