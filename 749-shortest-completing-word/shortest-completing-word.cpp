@@ -1,7 +1,7 @@
 class Solution {
 public:
 
-    bool isSubset(vector<int> &lpf, vector<int> wordF)
+    bool isSubset(const vector<int> &lpf, const vector<int> &wordF)
     {
         for(int i = 0; i<26; i++)
         {
@@ -11,7 +11,7 @@ public:
         return true;
     }
 
-    vector<int> freq(string &word)
+    vector<int> freq(const string &word)
     {
         vector<int> result(26,0);
         for(char c : word)
