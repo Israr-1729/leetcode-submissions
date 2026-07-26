@@ -5,7 +5,6 @@ public:
         int min1 = INT_MAX, min2 = INT_MAX;
 
         for (int x : nums) {
-            // Smallest two
             if (x <= min1) {
                 min2 = min1;
                 min1 = x;
@@ -13,7 +12,6 @@ public:
                 min2 = x;
             }
 
-            // Largest three
             if (x >= max1) {
                 max3 = max2;
                 max2 = max1;
