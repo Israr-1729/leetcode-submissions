@@ -1,22 +1,18 @@
 class Solution {
 public:
     int thirdMax(vector<int>& nums) {
-        sort(nums.begin(), nums.end());
-        vector<int> noDuplicates;
-        int i = 0;
-        int size = nums.size();
-        while(i<size)
-        {
-            noDuplicates.push_back(nums[i]);
-            i++;
-            while(i<size && nums[i]==nums[i-1])
-            i++;
-        }
+        set<int> copy;
+        for(int a : nums)
+        copy.insert(a);
 
-        int size2 = noDuplicates.size();
-        if(size2<3)
-        return noDuplicates[size2-1];
-        return noDuplicates[size2-3];
-        
+        vector<int> sorted;
+        for(auto &a : copy)
+        sorted.push_back(a);
+
+        if(sorted.size()<3)
+        return sorted[sorted.size()-1];
+
+        else
+        return sorted[sorted.size()-3];
     }
 };
