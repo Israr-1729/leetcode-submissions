@@ -3,30 +3,37 @@ public:
     void setZeroes(vector<vector<int>>& matrix) {
         int rows = matrix.size();
         int columns = matrix[0].size();
-        vector<vector<int>> zeroCoordinates;
+
+        unordered_set<int> toMakeRows;
+        unordered_set<int> toMakeColumns;
+
         for(int i = 0; i<rows; i++)
         {
             for(int j = 0; j<columns; j++)
             {
                 if(matrix[i][j] == 0)
-                zeroCoordinates.push_back({i, j});
+                {
+                    toMakeRows.insert(i);
+                    toMakeColumns.insert(j);
+                }
             }
         }
 
-        for(auto &a : zeroCoordinates)
+        for(auto &a : toMakeRows)
         {
-            int makeRow = a[0];
-            int makeColumn = a[1];
-
             for(int i = 0; i<columns; i++)
             {
-                matrix[makeRow][i] = 0;
-            }
-
-            for(int i = 0; i<rows; i++)
-            {
-                matrix[i][makeColumn] = 0;
+                matrix[a][i] = 0;
             }
         }
+
+        for(auto &a : toMakeColumns)
+        {
+            for(int i = 0; i<rows; i++)
+            {
+                matrix[i][a] = 0;
+            }
+        }
+        
     }
 };
