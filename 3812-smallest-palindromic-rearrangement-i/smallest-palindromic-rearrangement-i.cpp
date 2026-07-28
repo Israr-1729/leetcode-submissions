@@ -74,7 +74,6 @@ public:
     }
 
     string smallestPalindrome(string s) {
-        FreqChart freqChart = freqCharter(s);
-        return makePairs(freqChart);
+        return makePairs(freqCharter(s));
     }
 };
