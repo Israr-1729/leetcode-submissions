@@ -11,26 +11,26 @@
 class Solution {
 public:
     ListNode* deleteDuplicates(ListNode* head) {
-        unordered_set<int> nums;
+        set<int> nums;
         while(head)
         {
             nums.insert(head->val);
             head = head->next;
         }
 
-        vector<int> numsCopy;
+        /*vector<int> numsCopy;
 
         for(int a : nums)
         {
             numsCopy.push_back(a);
         }
 
-        sort(numsCopy.begin(), numsCopy.end());
+        sort(numsCopy.begin(), numsCopy.end());*/
 
         ListNode* dummyHead = new ListNode(0);
         ListNode* temp = dummyHead;
 
-        for(int a : numsCopy)
+        for(int a : nums)
         {
             ListNode* newNode = new ListNode(a);
             temp->next = newNode;
