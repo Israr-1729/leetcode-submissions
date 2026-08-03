@@ -18,15 +18,6 @@ public:
             head = head->next;
         }
 
-        /*vector<int> numsCopy;
-
-        for(int a : nums)
-        {
-            numsCopy.push_back(a);
-        }
-
-        sort(numsCopy.begin(), numsCopy.end());*/
-
         ListNode* dummyHead = new ListNode(0);
         ListNode* temp = dummyHead;
 
