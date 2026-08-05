@@ -4,11 +4,9 @@ public:
         long long totalAlice = 0;
         long long totalBob = 0;
 
-        unordered_set<int> setAlice;
         for(int a : aliceSizes)
         {
             totalAlice += a;
-            setAlice.insert(a);
         }
 
         unordered_set<int> setBob;
