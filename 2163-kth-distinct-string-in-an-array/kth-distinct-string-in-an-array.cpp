@@ -9,21 +9,11 @@ public:
             mp[a]++;
         }
 
-        unordered_set<string> distinct;
-        for(auto &a : mp)
-        {
-            if(a.second == 1)
-            distinct.insert(a.first);
-        }
-
-        if(distinct.size() < k)
-        return "";
-
         int count = 0;
 
         for(auto &a : arr)
         {
-            if(distinct.contains(a))
+            if(mp[a] == 1)
             count++;
 
             if(count == k)
