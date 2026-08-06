@@ -31,17 +31,21 @@ void fillPrimeNumbers()
 
     int distinctPrimeFactors(vector<int>& nums) {
         fillPrimeNumbers();
+        int ans = 0;
 
         unordered_set<int> primeFactors;
         for(int a : nums)
         {
             for(int b : primeNumbers)
             {
-                if(a % b == 0)
-                primeFactors.insert(b);
+                if(a % b == 0 && !primeFactors.contains(b))
+                {
+                    ans++;
+                    primeFactors.insert(b);
+                }
             }
         }
 
-        return primeFactors.size();
+        return ans;
     }
 };
