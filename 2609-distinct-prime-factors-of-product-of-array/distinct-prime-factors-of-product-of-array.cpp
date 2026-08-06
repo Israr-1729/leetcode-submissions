@@ -1,11 +1,7 @@
 class Solution {
 public:
 
-    vector<int> primeNumbers;
-
-void fillPrimeNumbers()
-{
-    primeNumbers = {
+    vector<int> primeNumbers = {
         2, 3, 5, 7, 11, 13, 17, 19, 23, 29,
         31, 37, 41, 43, 47, 53, 59, 61, 67, 71,
         73, 79, 83, 89, 97, 101, 103, 107, 109, 113,
@@ -25,10 +21,8 @@ void fillPrimeNumbers()
         947, 953, 967, 971, 977, 983, 991, 997
     };
 
-}
 
     int distinctPrimeFactors(vector<int>& nums) {
-        fillPrimeNumbers();
 
         unordered_set<int> primeFactors;
         for(int a : nums)
