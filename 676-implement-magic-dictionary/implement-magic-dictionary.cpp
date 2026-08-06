@@ -20,12 +20,11 @@ public:
                 continue; 
 
                 string buffer = searchWord;
-                searchWord[j] = i + 'a';
 
-                if(words.contains(searchWord))
+                buffer[j] = i + 'a';
+
+                if(words.contains(buffer))
                 return true;
-
-                searchWord = buffer;
             }
         }
         return false;
