@@ -22,11 +22,11 @@ public:
     
     int count(int tot) {
         int ans = 0;
-        for(auto &a : copy2)
+        for(auto &a : copy1)
         {
             int compliment = tot - a.first;
-            if(copy1.contains(compliment))
-            ans+=copy1[compliment] * a.second;
+            if(copy2.contains(compliment))
+            ans+=copy2[compliment] * a.second;
         }
         return ans;
     }
