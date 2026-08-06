@@ -6,7 +6,7 @@ public:
         
     }
     
-    void insert(string word) {
+    void insert(const string &word) {
         if(!s.contains(word))
         {
         s.insert(word);
@@ -14,14 +14,14 @@ public:
         }
     }
     
-    bool search(string word) {
+    bool search(const string &word) {
         if(s.contains(word))
         return true;
 
         return false;
     }
     
-    bool startsWith(string prefix) {
+    bool startsWith(const string &prefix) {
         for(const string &a : sCopy)
         {
             if(a.starts_with(prefix))
