@@ -23,7 +23,7 @@ public:
 
         for(const string &s : words)
         {
-            if(s.size() >= maxSize && containsAllDependencies(wordsCopy, s))
+            if(containsAllDependencies(wordsCopy, s) && s.size() >= maxSize)
             {
                 if(s.size() > maxSize)
                 {
