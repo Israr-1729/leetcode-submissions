@@ -1,12 +1,17 @@
 class Trie {
 public:
     unordered_set<string> s;
+    vector<string> sCopy;
     Trie() {
         
     }
     
     void insert(string word) {
+        if(!s.contains(word))
+        {
         s.insert(word);
+        sCopy.push_back(word);
+        }
     }
     
     bool search(string word) {
@@ -17,7 +22,7 @@ public:
     }
     
     bool startsWith(string prefix) {
-        for(auto &a : s)
+        for(const string &a : sCopy)
         {
             if(a.starts_with(prefix))
             return true;
