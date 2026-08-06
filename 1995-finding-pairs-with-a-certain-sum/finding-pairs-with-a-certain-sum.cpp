@@ -1,14 +1,12 @@
 class FindSumPairs {
 public:
 
-    unordered_map<int, int> copy1;
+    vector<int> arr1;
     unordered_map<int, int> copy2;
     vector<int> arr2;
     FindSumPairs(vector<int>& nums1, vector<int>& nums2) {
+        arr1 = nums1;
         arr2 = nums2;
-
-        for(int a : nums1)
-        copy1[a]++;
 
         for(int a : nums2)
         copy2[a]++;
@@ -22,11 +20,11 @@ public:
     
     int count(int tot) {
         int ans = 0;
-        for(auto &a : copy1)
+        for(int a : arr1)
         {
-            int compliment = tot - a.first;
+            int compliment = tot - a;
             if(copy2.contains(compliment))
-            ans+=copy2[compliment] * a.second;
+            ans+=copy2[compliment];
         }
         return ans;
     }
