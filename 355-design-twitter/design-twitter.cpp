@@ -1,86 +1,46 @@
 class Twitter {
 public:
-    int timer = 0;
 
-    unordered_map<int, vector<pair<int,int>>> tweets;
-
+    vector<pair<int, int>> allTweets; 
     unordered_map<int, unordered_set<int>> following;
 
     Twitter() {
-
+        
     }
-
+    
     void postTweet(int userId, int tweetId) {
-        tweets[userId].push_back({timer++, tweetId});
+        allTweets.push_back({userId, tweetId});
     }
-
+    
     vector<int> getNewsFeed(int userId) {
-
-        struct Node {
-            int time;
-            int tweetId;
-            int userId;
-            int index;
-
-            bool operator<(const Node &other) const {
-                return time < other.time;
+        vector<int> result;
+        for(int i = allTweets.size() - 1; i>=0; i--)
+        {
+            if(following[userId].contains(allTweets[i].first) || allTweets[i].first == userId)
+            {
+            result.push_back(allTweets[i].second);
             }
-        };
 
-        priority_queue<Node> pq;
-
-        if (!tweets[userId].empty()) {
-            int idx = tweets[userId].size() - 1;
-            pq.push({
-                tweets[userId][idx].first,
-                tweets[userId][idx].second,
-                userId,
-                idx
-            });
+            if(result.size() == 10)
+            break;
         }
-
-        for (int followee : following[userId]) {
-            if (!tweets[followee].empty()) {
-                int idx = tweets[followee].size() - 1;
-                pq.push({
-                    tweets[followee][idx].first,
-                    tweets[followee][idx].second,
-                    followee,
-                    idx
-                });
-            }
-        }
-
-        vector<int> ans;
-
-        while (!pq.empty() && ans.size() < 10) {
-
-            Node cur = pq.top();
-            pq.pop();
-
-            ans.push_back(cur.tweetId);
-
-            if (cur.index > 0) {
-                int newIndex = cur.index - 1;
-
-                pq.push({
-                    tweets[cur.userId][newIndex].first,
-                    tweets[cur.userId][newIndex].second,
-                    cur.userId,
-                    newIndex
-                });
-            }
-        }
-
-        return ans;
+        return result;
     }
-
+    
     void follow(int followerId, int followeeId) {
-        if (followerId == followeeId) return;
         following[followerId].insert(followeeId);
     }
-
+    
     void unfollow(int followerId, int followeeId) {
         following[followerId].erase(followeeId);
     }
 };
+
+/**
+ * Your Twitter object will be instantiated and called as such:
+ * Twitter* obj = new Twitter();
+ * obj->postTweet(userId,tweetId);
+ * vector<int> param_2 = obj->getNewsFeed(userId);
+ * obj->follow(followerId,followeeId);
+ * obj->unfollow(followerId,followeeId);
+ */
