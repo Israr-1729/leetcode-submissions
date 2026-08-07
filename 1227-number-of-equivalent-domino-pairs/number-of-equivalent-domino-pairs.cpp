@@ -19,12 +19,12 @@ public:
             mp[newKey]++;
         }
 
-        long long ans = 0;
+        int ans = 0;
 
         for(auto &a : mp)
         {
             int k = a.second;
-            ans += 1LL * k * (k-1) / 2;
+            ans += k * (k-1) / 2;
         }
         
         return ans;
