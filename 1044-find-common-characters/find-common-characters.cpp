@@ -13,7 +13,7 @@ public:
     }
     vector<string> commonChars(vector<string>& words) {
         vector<vector<int>> freqVector = freq(words);
-        vector<int> result(26, INT_MAX);
+        vector<int> result(26, 101);
         for(auto &a : freqVector)
         {
             for(int i = 0; i<26; i++)
