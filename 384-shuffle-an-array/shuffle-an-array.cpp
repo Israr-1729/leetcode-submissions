@@ -14,12 +14,13 @@ public:
     }
     
     vector<int> shuffle() {
-        random_device rd;
-        mt19937 g(rd());
+        vector<int> &v = arr;
+for(int i = v.size() - 1; i > 0; i--)
+{
+    int j = rand() % (i + 1);
+    swap(v[i], v[j]);
+}   return v;
 
-        std::shuffle(arr.begin(), arr.end(), g);
-
-        return arr;
     }
 };
 
