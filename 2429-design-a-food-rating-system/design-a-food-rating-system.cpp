@@ -33,9 +33,9 @@ public:
     }
     
     string highestRated(string cuisine) {
-        const auto &ratingToFood = items[cuisine];
-        const auto &highestRatedFoods = ratingToFood.rbegin() -> second;
-        string result = *highestRatedFoods.begin();
+        const auto &ratingToFood = items[cuisine]; //all ratings of that cuisine
+        const auto &highestRatedFoods = ratingToFood.rbegin() -> second; //all foods on highest rating of that cuisine
+        string result = *highestRatedFoods.begin(); //lexicographically smallest food on the highest rating of that cuisine
 
         return result;
 
