@@ -1,41 +1,35 @@
 class NumMatrix {
 public:
-
     vector<vector<int>> prefixGrid;
+
     NumMatrix(vector<vector<int>>& matrix) {
-        int columns = matrix[0].size();
+        int rows = matrix.size();
+        int cols = matrix[0].size();
 
-        for(auto &v : matrix)
+        prefixGrid.resize(rows + 1, vector<int>(cols + 1, 0));
+
+        for(int i = 1; i <= rows; i++)
         {
-            vector<int> thisRowPrefix(columns, 0);
-            int runningSum = 0;
-            for(int i = 0; i < columns; i++)
+            for(int j = 1; j <= cols; j++)
             {
-                runningSum += v[i];
-                thisRowPrefix[i] = runningSum;
-
+                prefixGrid[i][j] =
+                    matrix[i - 1][j - 1]
+                    + prefixGrid[i - 1][j]
+                    + prefixGrid[i][j - 1]
+                    - prefixGrid[i - 1][j - 1];
             }
-            prefixGrid.push_back(thisRowPrefix);
         }
     }
-    
+
     int sumRegion(int row1, int col1, int row2, int col2) {
+        row1++;
+        col1++;
+        row2++;
+        col2++;
 
-        int ans = 0;
-        for(int i = row1; i<=row2; i++)
-        {
-            if(col1 == 0)
-            ans += prefixGrid[i][col2];
-
-            else
-            ans += prefixGrid[i][col2] - prefixGrid[i][col1 - 1];
-        }
-        return ans;
+        return prefixGrid[row2][col2]
+             - prefixGrid[row1 - 1][col2]
+             - prefixGrid[row2][col1 - 1]
+             + prefixGrid[row1 - 1][col1 - 1];
     }
 };
-
-/**
- * Your NumMatrix object will be instantiated and called as such:
- * NumMatrix* obj = new NumMatrix(matrix);
- * int param_1 = obj->sumRegion(row1,col1,row2,col2);
- */
