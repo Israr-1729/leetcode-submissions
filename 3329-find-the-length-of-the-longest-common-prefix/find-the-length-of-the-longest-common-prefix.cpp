@@ -3,6 +3,9 @@ public:
     int longestCommonPrefix(vector<int>& arr1, vector<int>& arr2) {
         //Larger is arr2
 
+        if(arr1.size() > arr2.size())
+        return longestCommonPrefix(arr2, arr1);
+
         unordered_set<int> copy2;
         for(int a : arr2)
         {
