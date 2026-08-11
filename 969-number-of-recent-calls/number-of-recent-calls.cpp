@@ -13,6 +13,9 @@ public:
         {   
             if(t - pings[i] <= 3000)
             ans++;
+
+            else
+            break;
         }
         return ans;
     }
