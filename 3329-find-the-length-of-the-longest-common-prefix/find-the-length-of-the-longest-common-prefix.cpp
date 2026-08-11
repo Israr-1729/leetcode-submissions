@@ -16,25 +16,20 @@ public:
             }
         }
 
-        vector<int> copy1;
+        int maxLength = 0;
         for(int a : arr1)
         {
             while(a)
             {
-                copy1.push_back(a);
+            if(copy2.contains(a) && to_string(a).size() > maxLength)
+            {
+                maxLength = to_string(a).size();
+                break;
+            }
                 a/=10;
             }
         }
 
-
-        int maxLength = 0;
-        for(int a : copy1)
-        {
-            if(copy2.contains(a) && to_string(a).size() > maxLength)
-            {
-                maxLength = to_string(a).size();
-            }
-        }
     return maxLength;
     }
 };
