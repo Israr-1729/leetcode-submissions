@@ -1,10 +1,8 @@
 class NumMatrix {
 public:
 
-    vector<vector<int>> grid;
     vector<vector<int>> prefixGrid;
     NumMatrix(vector<vector<int>>& matrix) {
-        grid = matrix;
         int columns = matrix[0].size();
 
         for(auto &v : matrix)
