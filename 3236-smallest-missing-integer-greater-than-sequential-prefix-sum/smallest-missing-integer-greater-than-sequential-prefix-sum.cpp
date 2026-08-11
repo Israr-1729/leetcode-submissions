@@ -18,7 +18,6 @@ public:
         }
 
         int ans = maxSum;
-        cout<<maxSum;
         for(int i = maxSum; i>=-1; i++)
         {
             if(!copy.contains(i))
