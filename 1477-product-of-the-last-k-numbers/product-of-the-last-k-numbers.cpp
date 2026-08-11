@@ -1,22 +1,22 @@
 class ProductOfNumbers {
 public:
-
-    vector<int> nums;
     ProductOfNumbers() {
         
     }
     
-    void add(int num) {
-        nums.push_back(num);
+    vector<int> A = {1};
+    void add(int a) {
+        if (a)
+            A.push_back(A.back() * a);
+        else
+            A = {1};
     }
-    
-    int getProduct(int k) {
-        int product = 1;
-        for(int i = 0; i<k ;i++)
-        product *= nums[nums.size()-i-1];
 
-        return product;
+    int getProduct(int k) {
+        return k < A.size() ? A.back() / A[A.size() - k - 1]  : 0;
     }
+        
+    
 };
 
 /**
