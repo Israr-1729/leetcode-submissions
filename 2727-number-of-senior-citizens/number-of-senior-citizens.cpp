@@ -4,8 +4,7 @@ public:
         int count = 0;
         for(auto &s : details)
         {
-            int age = (s[11]-'0')*10 + (s[12]-'0');
-            if(age > 60)
+            if((s[11] == '6' && s[12] != '0') || s[11] > '6') 
             count++;
         }
         return count;
