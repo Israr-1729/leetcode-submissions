@@ -40,8 +40,6 @@ public:
             result.push_back({s, creatorToMostPopularVideo[s]});
         }
 
-        cout << creatorToMostPopularVideoViews[creatorsWithMaxViews[0]];
-
         return result;
     }
 };
