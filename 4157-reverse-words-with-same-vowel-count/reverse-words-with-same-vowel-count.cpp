@@ -11,6 +11,7 @@ public:
         }
         return vowelCount;
     }
+
     string reverseWords(string s) {
         int i = 0; int size = s.size();
 
@@ -25,16 +26,18 @@ public:
                 i++;
             }
 
+            int currentVowels = vowelCounter(newWord);
+
             if(vowelCountChecker == -1)
             {
-                vowelCountChecker = vowelCounter(newWord);
+                vowelCountChecker = currentVowels;
                 result += newWord;
                 result += ' ';
                 i++;
                 continue;
             }
 
-            if(vowelCounter(newWord) == vowelCountChecker)
+            if(currentVowels == vowelCountChecker)
             {
                 reverse(newWord.begin(), newWord.end());
                 result += newWord;
