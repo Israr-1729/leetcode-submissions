@@ -1,26 +1,28 @@
 class Solution {
 public:
     int minimumArea(vector<vector<int>>& grid) {
-        set<int> rowIndices;
-        set<int> columnIndices;
 
+        int maxRow = INT_MIN;
+        int minRow = INT_MAX;
+
+        int maxColumn = INT_MIN;
+        int minColumn = INT_MAX;
         for(int i = 0; i < grid.size(); i++)
         {
             for(int j = 0; j < grid[0].size() ; j++)
             {
                 if(grid[i][j] == 1)
                 {
-                    rowIndices.insert(i);
-                    columnIndices.insert(j);
+                    maxRow = max(maxRow, i);
+                    minRow = min(minRow, i);
+
+                    maxColumn = max(maxColumn, j);
+                    minColumn = min(minColumn, j);
                 }
             }
         }
 
-        int maxRow = *rowIndices.rbegin();
-        int minRow = *rowIndices.begin();
 
-        int maxColumn = *columnIndices.rbegin();
-        int minColumn = *columnIndices.begin();
 
         cout<<maxRow<<" "<<minRow<<" "<<maxColumn<<" "<<minColumn;
 
