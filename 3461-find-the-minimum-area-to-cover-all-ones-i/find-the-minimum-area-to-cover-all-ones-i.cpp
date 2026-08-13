@@ -24,7 +24,6 @@ public:
 
 
 
-        cout<<maxRow<<" "<<minRow<<" "<<maxColumn<<" "<<minColumn;
 
         return(maxRow-minRow + 1)*(maxColumn - minColumn + 1);
         
