@@ -79,19 +79,6 @@ public:
     return result;
     }
 
-
-
-    int numReverser(int i)
-    {
-        int result = 0;
-        while(i)
-        {
-            result = result * 10 + i % 10;
-            i/=10;
-        }
-        return result;
-    }
-
 vector<int> fillThreeDigitEach(int num)
 {
     if(num == 0)
