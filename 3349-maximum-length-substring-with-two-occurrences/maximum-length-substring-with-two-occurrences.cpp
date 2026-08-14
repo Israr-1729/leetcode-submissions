@@ -1,28 +1,24 @@
 class Solution {
 public:
-    bool max2Freq (const string &a)
-    {
-        vector<int> copyA(26, 0);
-        vector<int> copyB(26, 0);
-
-        for(char c : a)
-        {
-            copyA[c-'a']++;
-            if(copyA[c-'a'] > 2)
-            return false;
-        }
-        return true;
-    }
     int maximumLengthSubstring(string s) {
-        int maxLength = INT_MIN;
-        for(int i = 0; i < s.size(); i++)
+    vector<int> freq(26, 0);
+
+    int left = 0;
+    int ans = 0;
+
+    for(int right = 0; right < s.size(); right++)
+    {
+        freq[s[right] - 'a']++;
+
+        while(freq[s[right] - 'a'] > 2)
         {
-            for(int j = i; j < s.size(); j++)
-            {
-                if(max2Freq(s.substr(i, j-i+1)))
-                maxLength = max(maxLength, j-i+1);
-            }
+            freq[s[left] - 'a']--;
+            left++;
         }
-        return maxLength;
+
+        ans = max(ans, right - left + 1);
     }
+
+    return ans;
+}
 };
