@@ -24,6 +24,8 @@ public:
                 else if(customfunction.f(i, j) > z)
                 break;
             }
+            if(customfunction.f(i, 1) > z)
+            break;
         } 
         return result;
     }
