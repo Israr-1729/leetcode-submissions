@@ -20,6 +20,9 @@ public:
             {
                 if(customfunction.f(i, j) == z)
                 result.push_back({i, j});
+
+                else if(customfunction.f(i, j) > z)
+                break;
             }
         } 
         return result;
