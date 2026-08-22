@@ -1,47 +1,38 @@
 class Solution {
 public:
-    bool numDivisors(int n)
+
+    int otherFactor(int num)
     {
-        if((int) sqrt(n) * (int) sqrt(n) == n)
-        return false;
+        int root = (int) sqrt(num);
 
-        int divCount = 0;
-        for(int i = 1; i * i < n; i++)
-        {
-            if(n % i == 0)
-            {
-            divCount++;
-            }
-
-            if(divCount > 2)
-            return false;
-        }
-        if(divCount == 2)
-        return true;
-
-        return false;
-    }
-
-    int divisor(int n)
-    {
-        for(int i = 2; i * i < n; i++)
-        {
-            if(n % i == 0)
-            return i;
-        }
+        if(root * root == num)
         return -1;
-    }
 
+        int ans = -1;
+        for(int i = 2; i * i < num; i++)
+        {
+            if(num % i == 0)
+            {
+                if(ans != -1)
+                return -1;
+
+                else
+                ans = i;
+            }
+        }
+
+        return ans;
+    }
     int sumFourDivisors(vector<int>& nums) {
-        int ans = 0;
+        int sum = 0;
         for(int i : nums)
         {
-            if(numDivisors(i))
+            int factor = otherFactor(i);
+            if(factor != -1)
             {
-                int otherDivider = divisor(i);
-                ans += 1 + i + otherDivider + i/otherDivider;
+                sum += 1 + i + factor + i/factor;
             }
         }
-        return ans;
+        return sum;
     }
 };
