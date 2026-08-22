@@ -42,8 +42,7 @@ public:
 
         for(auto &v : leftDiagonals)
         {
-            sort(v.begin(), v.end());
-            reverse(v.begin(), v.end());
+            sort(v.rbegin(), v.rend());
         }
 
         for(auto &v : rightDiagonals)
