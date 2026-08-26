@@ -27,8 +27,8 @@ public:
                 //break;
                 }
 
-                //else if(count > k)
-                //break;
+                else if(count > k)
+                break;
             }
         }
 
