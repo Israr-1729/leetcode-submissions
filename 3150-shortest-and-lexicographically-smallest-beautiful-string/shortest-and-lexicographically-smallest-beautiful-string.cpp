@@ -16,20 +16,18 @@ public:
         unordered_map<int, set<string>> beautiful;
         for(int i = 0; i < s.size(); i++)
         {
+            int onesCount = 0;
             for(int j = i; j < s.size(); j++)
             {
-                const string &st = s.substr(i, j-i+1);
-                int count = onesCount(st);
+                if(s[j] == '1')
+                onesCount++;
 
-                if(count == k)
+                if(onesCount == k)
                 {
-                beautiful[j-i+1].insert(st);
-                //break;
+                    beautiful[j-i+1].insert(s.substr(i, j-i+1));
+                    break;
                 }
-
-                else if(count > k)
-                break;
-            }
+            }       
         }
 
         if(beautiful.empty())
