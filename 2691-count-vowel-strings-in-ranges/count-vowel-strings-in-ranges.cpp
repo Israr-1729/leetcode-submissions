@@ -17,24 +17,25 @@ public:
 
         vector<int> vowelStrings(vector<string>& words, vector<vector<int>>& queries) {
         int runningCount = 0;
-        vector<int> runningVector;
-
+        vector<int> runningVector(words.size(), 0);
+        int i = 0;
         for(const string &s : words)
         {
-            runningVector.push_back(runningCount);
+            runningVector[i++] = (runningCount);
 
             if(isTrue(s))
             runningCount++;
         }
 
-        vector<int> result;
+        vector<int> result(queries.size(), 0);
+        int idx = 0;
         for(auto &a : queries)
         {
             if(isTrue(words[a[1]]))
-            result.push_back(runningVector[a[1]] - runningVector[a[0]] + 1);
+            result[idx++] = (runningVector[a[1]] - runningVector[a[0]] + 1);
 
             else
-            result.push_back(runningVector[a[1]] - runningVector[a[0]]);
+            result[idx++] = (runningVector[a[1]] - runningVector[a[0]]);
         }
         return result;
     }
