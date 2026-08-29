@@ -25,7 +25,6 @@ public:
                 scoreB += nums[i];
             }
 
-            cout<<scoreA<<" "<<scoreB<<"\n";
         }
         return (scoreA-scoreB);
     }
