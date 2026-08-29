@@ -2,22 +2,29 @@ class Solution {
 public:
     unordered_set<int> primeNumbersSum;
 
-    bool isPrime(int n)
+    vector<bool> prime;
+
+void sieve(int n)
+{
+    prime.assign(n + 1, true);
+
+    prime[0] = prime[1] = false;
+
+    for (int i = 2; i * i <= n; i++)
     {
-        if(n == 2)
-        return true;
-
-        if(n < 2 || n%2 == 0)
-        return false;
-
-        for(int i = 3; i * i <= n; i += 2)
+        if (prime[i])
         {
-            if(n % i == 0)
-            return false;
+            for (int j = i * i; j <= n; j += i)
+                prime[j] = false;
         }
-
-        return true;
     }
+}
+
+bool isPrime(int x)
+{
+    return prime[x];
+}
+
     void fillPrimeNumbers()
     {
         int runningSum = 0;
@@ -35,6 +42,7 @@ public:
     }
 
     int largestPrime(int n) {
+        sieve(500000);
         fillPrimeNumbers();
         while(n >= 0)
         {
