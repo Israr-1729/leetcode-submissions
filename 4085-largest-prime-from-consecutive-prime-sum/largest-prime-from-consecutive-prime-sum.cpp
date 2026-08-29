@@ -1,6 +1,7 @@
 class Solution {
 public:
     unordered_set<int> primeNumbersSum;
+    unordered_set<int> primes;
 
     bool isPrime(int n)
     {
@@ -27,6 +28,7 @@ public:
             {
                 runningSum += i;
                 primeNumbersSum.insert(runningSum);
+                primes.insert(i);
             }
 
             if(runningSum >= 500000)
