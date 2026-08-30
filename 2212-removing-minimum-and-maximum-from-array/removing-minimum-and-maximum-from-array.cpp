@@ -28,7 +28,7 @@ public:
         /*cout<<cuttingFromLeft<<" "<<cuttingFromRight<<" "<<cuttingFromBoth<<"\n";
         cout<<minm<<" "<<maxm<<"\n";
         cout<<minIDX<<" "<<maxIDX<<"\n";
-        cout<<(min(maxIDX, maxIDX) + 1)<<" "<<(nums.size() - max(maxIDX, minIDX))<<"\n";*/
+        cout<<(min(maxIDX, minIDX) + 1)<<" "<<(nums.size() - max(maxIDX, minIDX))<<"\n";*/
         return min(min(cuttingFromLeft, cuttingFromRight), cuttingFromBoth);
     }
 };
