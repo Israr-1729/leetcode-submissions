@@ -43,12 +43,12 @@ return -1;
         {
             totalSum += i;
 
-            if(i % 3 == 1)
+            if(smallestRemainder1.size () <= 2 && i % 3 == 1)
             {
                 smallestRemainder1.push_back(i);
             }
 
-            else if(i % 3 == 2)
+            else if(smallestRemainder2.size() <= 2 && i % 3 == 2)
             {
                 smallestRemainder2.push_back(i);
             }
