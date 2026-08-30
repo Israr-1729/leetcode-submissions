@@ -62,7 +62,7 @@ return -1;
         if(totalSum % 3 == 1)
         {
             int toSubtract = smallestRemainder(1, smallestRemainder1, smallestRemainder2);
-            if(toSubtract == 0)
+            if(toSubtract == -1)
             return 0;
             return totalSum - toSubtract;
         }
@@ -70,7 +70,7 @@ return -1;
         if(totalSum % 3 == 2)
         {
             int toSubtract = smallestRemainder(2, smallestRemainder1, smallestRemainder2);
-            if(toSubtract == 0)
+            if(toSubtract == -1)
             return 0;
             return totalSum - toSubtract;
         }
