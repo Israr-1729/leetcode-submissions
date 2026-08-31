@@ -11,22 +11,18 @@
  */
 class Solution {
 public:
-    vector<int> result;
-    void fillResult(TreeNode* root)
+    void travel(TreeNode* root, vector<int> &ans)
     {
         if(root == nullptr)
-        {
-            return;
-        }
+        return;
 
-        fillResult(root->left);
-        result.push_back(root->val);
-        fillResult(root->right);
+        travel(root->left, ans);
+        ans.push_back(root->val);
+        travel(root->right, ans);
     }
     vector<int> inorderTraversal(TreeNode* root) {
-        fillResult(root);
-        return result;
-
-        
+        vector<int> ans;
+        travel(root, ans);
+        return ans;
     }
 };
