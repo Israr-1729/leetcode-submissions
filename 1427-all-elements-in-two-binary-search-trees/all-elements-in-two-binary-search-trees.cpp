@@ -35,22 +35,11 @@ public:
         }
     }
     vector<int> getAllElements(TreeNode* root1, TreeNode* root2) {
-        vector<int> nums1; vector<int> nums2;
-        lot(root1, nums1);
-        lot(root2, nums2);
+        vector<int> nums;
+        lot(root1, nums);
+        lot(root2, nums);
 
-        vector<int> result;
-        for(int i : nums1)
-        {
-            result.push_back(i);
-        }
-
-        for(int i : nums2)
-        {
-            result.push_back(i);
-        }
-
-        sort(result.begin(), result.end());
-        return result;
+        sort(nums.begin(), nums.end());
+        return nums;
     }
 };
