@@ -38,8 +38,8 @@ public:
         if(root->val == sumOfSubtree(root)/numOfNodes(root))
         ans++;
 
-        averageOfSubtree(root->left);
-        averageOfSubtree(root->right);
+        calculate(root->left);
+        calculate(root->right);
     }
 
     int averageOfSubtree(TreeNode* root) {
