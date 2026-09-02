@@ -24,17 +24,7 @@ public:
     int kthSmallest(TreeNode* root, int k) {
         vector<int> result;
         traverse(result, root);
-
-        for(int i : result)
-        cout<<i<<" ";
-
-        cout<<"\n";
-
         sort(result.begin(), result.end());
-
-        for(int i : result)
-        cout<<i<<" ";
-
         return result[k-1];
     }
 };
