@@ -11,12 +11,14 @@
  */
 class Solution {
 public:
+    int maxFreq = INT_MIN;
     void frequencer(TreeNode* root, unordered_map<int, int> &freq)
     {
         if(root == nullptr)
         return;
 
         freq[root->val]++;
+        maxFreq = max(maxFreq, freq[root->val]);
         frequencer(root->left, freq);
         frequencer(root->right, freq);
     }
@@ -24,16 +26,10 @@ public:
         unordered_map<int, int> mp;
         frequencer(root, mp);
 
-        int highestFreq = -1;
-        for(auto &a : mp)
-        {
-            highestFreq = max(highestFreq, a.second);
-        }
-
         vector<int> ans;
         for(auto &a : mp)
         {
-            if(a.second == highestFreq)
+            if(a.second == maxFreq)
             ans.push_back(a.first);
         }
 
