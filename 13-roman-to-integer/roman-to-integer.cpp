@@ -1,30 +1,28 @@
 class Solution {
 public:
-
-//Basic Idea is that if a smaller valued character is before a larger valued character, we subtract. Else, we add.
-
-int value(char c) {
-        if (c == 'I') return 1;
-        if (c == 'V') return 5;
-        if (c == 'X') return 10;
-        if (c == 'L') return 50;
-        if (c == 'C') return 100;
-        if (c == 'D') return 500;
-        return 1000; // M
+    int val(char c)
+    {    switch (c)
+    {
+        case 'I' : return 1;
+        case 'V' : return 5;
+        case 'X' : return 10;
+        case 'L' : return 50;
+        case 'C' : return 100;
+        case 'D' : return 500;
+        case 'M' : return 1000;
     }
-
-
+    return -1;
+    }
     int romanToInt(string s) {
-        int size = s.size();
         int ans = 0;
-        for(int i = 0; i<size-1; i++)
+        for(int i = 0; i < s.size(); i++)
         {
-            if(value(s[i])<value(s[i+1]))
-            ans-=value(s[i]);
+            if(i < s.size() - 1 && val(s[i]) < val(s[i+1]))
+            ans -= val(s[i]);
+
             else
-            ans+=value(s[i]);
+            ans += val(s[i]);
         }
-        ans+=value(s[size-1]);
         return ans;
     }
 };
