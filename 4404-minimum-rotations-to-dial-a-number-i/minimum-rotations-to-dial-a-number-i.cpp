@@ -27,7 +27,6 @@ public:
             {
                 cw = 0; acw = 0;
             }
-        cout<<min(cw, acw)<<"\n";
         total += min(cw, acw);
         }
         return total;
