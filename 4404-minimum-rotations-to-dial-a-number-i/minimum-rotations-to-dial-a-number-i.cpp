@@ -19,7 +19,7 @@ public:
 
             else if(to < from)
             {
-                cw = (0, from - to);
+                cw = from - to;
                 acw = (10-from) + to;
             }
 
