@@ -10,36 +10,34 @@
 
 class Solution {
 public:
-    unordered_map<TreeNode*, string> locations;
     void levelOrder(TreeNode* original, TreeNode* &target, string &ans)
     {
         if(original == nullptr)
         return;
 
         string begin = "";
-        queue<TreeNode*> q;
-        q.push(original);
-        locations[original] = "";
+        queue<pair<TreeNode*, string>> q;
+        q.push({original, ""});
         
         while(q.size() != 0)
         {
             int size = q.size();
             for(int i = 0; i < size; i++)
             {
-                if(q.front() == target)
+                if(q.front().first == target)
                 {
-                    ans = locations[q.front()];
+                    ans = q.front().second;
                 }
-                if(q.front()->left)
+                if(q.front().first->left)
                 {
-                    q.push(q.front()->left);
-                    locations[q.front()->left] = locations[q.front()] + "L";
+                    q.push({q.front().first->left, q.front().second + "L"});
+                    //locations[q.front()->left] = locations[q.front()] + "L";
                 }
 
-                if(q.front() -> right)
+                if(q.front().first -> right)
                 {
-                    q.push(q.front()->right);
-                    locations[q.front()->right] = locations[q.front()] + "R";
+                    q.push({q.front().first->right, q.front().second + "R"});
+                    //locations[q.front()->right] = locations[q.front()] + "R";
                 }
 
                 q.pop();
