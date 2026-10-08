@@ -10,39 +10,59 @@
 
 class Solution {
 public:
-    bool isSame(TreeNode* thisOne, TreeNode* target)
+    unordered_map<TreeNode*, string> locations;
+    void levelOrder(TreeNode* original, TreeNode* &target, string &ans)
     {
-        if(thisOne == nullptr && target == nullptr)
-        return true;
-
-        if(thisOne == nullptr && target != nullptr)
-        return false;
-
-        if(thisOne != nullptr && target == nullptr)
-        return false;
-
-        if(thisOne -> val != target -> val)
-        return false;
-
-        return isSame(thisOne -> left, target -> left) && isSame(thisOne-> right, target->right);
-    }
-    void creator(TreeNode* cloned, TreeNode* target, TreeNode* &ans)
-    {
-        if(target == nullptr || cloned == nullptr)
+        if(original == nullptr)
         return;
 
-        if(isSame(cloned, target))
+        string begin = "";
+        queue<TreeNode*> q;
+        q.push(original);
+        locations[original] = "";
+        
+        while(q.size() != 0)
         {
-            ans = cloned;
-            return;
-        }
+            int size = q.size();
+            for(int i = 0; i < size; i++)
+            {
+                if(q.front() == target)
+                {
+                    ans = locations[q.front()];
+                }
+                if(q.front()->left)
+                {
+                    q.push(q.front()->left);
+                    locations[q.front()->left] = locations[q.front()] + "L";
+                }
 
-        creator(cloned->left, target, ans);
-        creator(cloned->right, target, ans);
+                if(q.front() -> right)
+                {
+                    q.push(q.front()->right);
+                    locations[q.front()->right] = locations[q.front()] + "R";
+                }
+
+                q.pop();
+            }
+        }
     }
     TreeNode* getTargetCopy(TreeNode* original, TreeNode* cloned, TreeNode* target) {
-        TreeNode* ans = new TreeNode(0);
-        creator(cloned, target, ans);
-        return ans;
+        string ans;
+        levelOrder(original, target, ans);
+
+        if(ans == "")
+        return cloned;
+
+        TreeNode* travel = cloned;
+        for(char c : ans)
+        {
+            if(c == 'L')
+            travel = travel->left;
+
+            else
+            travel = travel->right;
+        }
+
+        return travel;
     }
 };
