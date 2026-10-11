@@ -36,7 +36,6 @@ public:
 
             if(!front->T->left && !front->T->right)
             {
-                cout<<front->sumSoFar<<"\n";
                 if(front->sumSoFar == targetSum)
                 result.push_back(front->values);
             }
